@@ -82,15 +82,6 @@ class PilihAkunView extends GetView<PilihAkunController> {
                 ),
               ),
             ),
-            Row(
-              children: [
-                Button(
-                  text: 'Login',
-                  sizeCategory: 'Large',
-                  isActive: false,
-                ),
-              ],
-            )
           ],
         ),
       ),
