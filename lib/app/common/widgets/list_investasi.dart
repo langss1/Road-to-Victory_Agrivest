@@ -87,28 +87,27 @@ class ListInvestasi extends StatelessWidget {
                             )
                           ],
                         )),
-                        Expanded(
-                            child: category == 'Hewan Ternak'
-                                ? Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        currencyFormatter.format(harga),
-                                        style: GoogleFonts.nunito(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF6D6D6D)),
-                                      ),
-                                      Text(
-                                        'Tersisa ${slot.toString()} slot',
-                                        style: GoogleFonts.nunito(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF90BA3E)),
-                                      )
-                                    ],
+                        category == 'Hewan Ternak'
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    currencyFormatter.format(harga),
+                                    style: GoogleFonts.nunito(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF6D6D6D)),
+                                  ),
+                                  Text(
+                                    'Tersisa ${slot.toString()} slot',
+                                    style: GoogleFonts.nunito(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF90BA3E)),
                                   )
-                                : SizedBox())
+                                ],
+                              )
+                            : SizedBox()
                       ],
                     ),
                   ),
