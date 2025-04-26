@@ -2,6 +2,9 @@ import 'package:get/get.dart';
 
 class InvestasiController extends GetxController {
   var category = 'Hewan Ternak'.obs;
+  var availability = 'Tersedia'.obs;
+  var time = '1B'.obs;
+  var selectedTernak = Rxn<Product>();
   var selectedList = List<Product>.empty(growable: true).obs;
 
   List<Peternakan> listPeternakan = [
@@ -121,10 +124,25 @@ class InvestasiController extends GetxController {
   getSelectedList() => selectedList;
   setSelectedList(List<Product> list) => selectedList.value = list;
 
+  setSelectedTernak(Product selectedTernak) =>
+      this.selectedTernak.value = selectedTernak;
+
+  void changeAvailability(String availability) {
+    this.availability.value = availability;
+  }
+
+  void changeSelectedTernak(Product selectedTernak) {
+    this.selectedTernak.value = selectedTernak;
+  }
+
   void changeCategory(String category) {
     this.category.value = category;
     setSelectedList(
         allProduct.where((product) => product.category == category).toList());
+  }
+
+  void changeTime(String time) {
+    this.time.value = time;
   }
 
   @override
@@ -156,6 +174,31 @@ abstract class Product {
     required this.categoryData2,
     required this.category,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Product &&
+          runtimeType == other.runtimeType &&
+          imgPath == other.imgPath &&
+          name == other.name &&
+          subheading == other.subheading &&
+          harga == other.harga &&
+          slot == other.slot &&
+          categoryData1 == other.categoryData1 &&
+          categoryData2 == other.categoryData2 &&
+          category == other.category;
+
+  @override
+  int get hashCode =>
+      imgPath.hashCode ^
+      name.hashCode ^
+      subheading.hashCode ^
+      harga.hashCode ^
+      slot.hashCode ^
+      categoryData1.hashCode ^
+      categoryData2.hashCode ^
+      category.hashCode;
 }
 
 class HewanTernak extends Product {

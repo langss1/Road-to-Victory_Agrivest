@@ -33,59 +33,81 @@ class ListTernak extends StatelessWidget {
       ..minimumFractionDigits = 2
       ..maximumFractionDigits = 2;
 
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
-          border: Border.all(
-              color: isSelected ? Colors.green : Colors.grey,
-              width: isSelected ? 2 : 1)),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 7,
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.asset(imgPath, fit: BoxFit.contain),
-                ),
-                SizedBox(width: 8),
-                Column(
-                  children: [
-                    Text(
-                      namaTernak,
-                      style: GoogleFonts.nunito(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+    return GestureDetector(
+      onTap: onTap ?? () {},
+      child: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            border: Border.all(
+                color: isSelected ? Color(0xFF90BA3E) : Color(0xFFE9E9E9),
+                width: isSelected ? 2 : 1)),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
                     ),
-                    Text(
-                      namaPeternakan,
-                      style: GoogleFonts.nunito(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ],
-                )
-              ],
+                    child: Image.asset(
+                      imgPath,
+                      fit: BoxFit.contain,
+                      height: 28,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        namaTernak,
+                        style: GoogleFonts.nunito(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          color: Color(0xFF252525),
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        namaPeternakan,
+                        style: GoogleFonts.nunito(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Color(0xFF6D6D6D),
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Column(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Row(
                   children: [
                     Text(
                       currencyFormatter.format(hargaTernak),
-                      style: GoogleFonts.nunito(),
+                      style: GoogleFonts.nunito(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: Color(0xFF252525),
+                      ),
                     ),
                     Text(
                       satuan,
-                      style: GoogleFonts.nunito(),
+                      style: GoogleFonts.nunito(
+                        fontSize: 12,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xFF252525),
+                      ),
                     )
                   ],
                 ),
@@ -95,14 +117,14 @@ class ListTernak extends StatelessWidget {
                       color: change < 0
                           ? Colors.pink
                           : change > 0
-                              ? Colors.green
-                              : Colors.grey,
+                              ? Color(0xFF90BA3E)
+                              : Color(0xFFE9E9E9),
                       fontSize: 14),
                 )
               ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
