@@ -1,3 +1,4 @@
+import 'package:agrivest/app/common/customnavbar/custom_bottom_navbar.dart';
 import 'package:agrivest/app/modules/riwayat/controllers/riwayat_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class RiwayatView extends StatelessWidget {
           Expanded(child: _buildContent()),
         ],
       ),
+      bottomNavigationBar: CustomBottomNavBar(),
     );
   }
 
@@ -182,7 +184,7 @@ class RiwayatView extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // aksi bayar sekarang
+                    Get.toNamed('/metode-pembayaran');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF8BC34A),

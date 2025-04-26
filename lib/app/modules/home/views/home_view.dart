@@ -225,36 +225,27 @@ class HomeView extends GetView<HomeController> {
                       }).toList(),
                     )),
                 const SizedBox(height: 16),
-                Obx(() {
-                  if (controller.isLoading.value) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (controller.filteredItems.isEmpty) {
-                    return Center(
-                      child: Text('No items available'),
-                    );
-                  }
-                  return Column(
-                    children: controller.filteredItems.map((item) {
-                      return Column(
-                        children: [
-                          ListTernak(
-                            imgPath: 'assets/images/cow.png',
-                            namaTernak: item.namaHewan,
-                            namaPeternakan: item.namaPeternakan,
-                            hargaTernak: item.harga,
-                            satuan: '/ekor',
-                            change: item.change,
-                            onTap: () {},
-                          ),
-                          SizedBox(height: 12),
-                        ],
-                      );
-                    }).toList(),
-                  );
-                }),
+                Obx(() => Column(
+                      children: controller.filteredItems.map((item) {
+                        final iconPath =
+                            controller.categoryIcons[item['category']] ??
+                                'assets/images/default.png';
+                        return Column(
+                          children: [
+                            ListTernak(
+                                imgPath: iconPath,
+                                namaTernak: item['name'],
+                                namaPeternakan: 'Peternakan Sari bumi',
+                                hargaTernak: item['price'],
+                                satuan: '/ekor',
+                                change: item['change'] ?? 0.0,
+                                onTap: () => Get.toNamed('/detail-ternak',
+                                    arguments: item)),
+                            SizedBox(height: 12),
+                          ],
+                        );
+                      }).toList(),
+                    )),
               ],
             ),
           ),
