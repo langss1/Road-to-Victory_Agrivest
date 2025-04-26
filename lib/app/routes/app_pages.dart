@@ -9,10 +9,18 @@ import 'package:agrivest/app/modules/investasi/views/investasi_home_view.dart';
 
 import 'package:agrivest/app/modules/loginInvestor/bindings/login_investor_binding.dart';
 import 'package:agrivest/app/modules/loginInvestor/views/login_investor_view.dart';
+import 'package:agrivest/app/modules/notifikasi/bindings/notifikasi_binding.dart';
+import 'package:agrivest/app/modules/notifikasi/views/notifikasi_view.dart';
+import 'package:agrivest/app/modules/pantauTernak/bindings/pantau_ternak_binding.dart';
+import 'package:agrivest/app/modules/pantauTernak/views/pantau_ternak_view.dart';
 import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart';
 import 'package:agrivest/app/modules/pilihAkun/views/pilih_akun_view.dart';
+import 'package:agrivest/app/modules/portofolio/bindings/portofolio_binding.dart';
+import 'package:agrivest/app/modules/portofolio/views/protofolio_view.dart';
 import 'package:agrivest/app/modules/profile/bindings/profile_binding.dart';
 import 'package:agrivest/app/modules/profile/views/profile_view.dart';
+import 'package:agrivest/app/modules/riwayat/bindings/riwayat_binding.dart';
+import 'package:agrivest/app/modules/riwayat/views/riwayat_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -23,7 +31,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.INVESTASI;
+  static const INITIAL = Routes.PILIHAKUN;
 
   static final routes = [
     GetPage(
@@ -69,6 +77,26 @@ class AppPages {
       name: _Paths.REGISTERINVESTOR,
       page: () => RegisterInvestorView(),
       binding: RegisterInvestorBinding(),
+    ),
+    GetPage(
+      name: _Paths.PORTOFOLIO,
+      page: () => ProtofolioView(),
+      binding: PortofolioBinding(),
+    ),
+    GetPage(
+      name: _Paths.PANTAU,
+      page: () => PantauTernakView(),
+      binding: PantauTernakBinding(),
+    ),
+    GetPage(
+      name: _Paths.RIWAYAT,
+      page: () => RiwayatView(),
+      binding: RiwayatBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFIKASI,
+      page: () => NotifikasiView(),
+      binding: NotifikasiBinding(),
     )
   ];
 }

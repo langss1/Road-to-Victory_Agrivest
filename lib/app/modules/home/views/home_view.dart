@@ -38,8 +38,10 @@ class HomeView extends GetView<HomeController> {
                       IconButton(
                         icon: Icon(Icons.notifications_none,
                             size: 28, color: Colors.grey),
-                        onPressed: () {},
-                      ),
+                        onPressed: () {
+                          Get.toNamed('/notifikasi');
+                        },
+                      )
                     ],
                   ),
                 ),
@@ -159,7 +161,7 @@ class HomeView extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildMenuItem('assets/images/investasi.png', 'Investasi',
-                        Color(0xFFF0EEE8), '/investasi', context),
+                        Color(0xFFF0EEE8), '/investasi-home', context),
                     _buildMenuItem('assets/images/saham.png', 'Saham',
                         Color(0xFFF1F4E6), '/saham', context),
                     _buildMenuItem('assets/images/komunitas.png', 'Komunitas',

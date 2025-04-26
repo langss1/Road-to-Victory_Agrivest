@@ -11,6 +11,10 @@ abstract class Routes {
   static const REGISTERINVESTOR = _Paths.REGISTERINVESTOR;
   static const PROFIL = _Paths.PROFIL;
   static const LAINNYAHOME = _Paths.LAINNYAHOME;
+  static const PORTOFOLIO = _Paths.PORTOFOLIO;
+  static const PANTAU = _Paths.PANTAU;
+  static const RIWAYAT = _Paths.RIWAYAT;
+  static const NOTIFIKASI = _Paths.NOTIFIKASI;
 }
 
 abstract class _Paths {
@@ -23,4 +27,8 @@ abstract class _Paths {
   static const REGISTERINVESTOR = '/register-investor';
   static const PROFIL = '/profil';
   static const LAINNYAHOME = '/lainnya-home';
+  static const PORTOFOLIO = '/portofolio';
+  static const PANTAU = '/pantau';
+  static const RIWAYAT = '/riwayat';
+  static const NOTIFIKASI = '/notifikasi';
 }

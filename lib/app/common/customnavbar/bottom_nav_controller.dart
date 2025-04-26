@@ -11,7 +11,7 @@ class BottomNavController extends GetxController {
         Get.toNamed('/home');
         break;
       case 1:
-        Get.toNamed('/porto');
+        Get.toNamed('/portofolio');
         break;
       case 2:
         Get.toNamed('/riwayat');
