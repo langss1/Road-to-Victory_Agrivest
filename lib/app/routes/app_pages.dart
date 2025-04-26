@@ -1,3 +1,5 @@
+import 'package:agrivest/app/modules/loginInvestor/bindings/login_investor_binding.dart';
+import 'package:agrivest/app/modules/loginInvestor/views/login_investor_view.dart';
 import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart';
 import 'package:agrivest/app/modules/pilihAkun/views/pilih_akun_view.dart';
 import 'package:get/get.dart';
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.PILIHAKUN,
       page: () => PilihAkunView(),
       binding: PilihAkunBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGININVESTOR,
+      page: () => LoginInvestorView(),
+      binding: LoginInvestorBinding(),
     ),
   ];
 }
