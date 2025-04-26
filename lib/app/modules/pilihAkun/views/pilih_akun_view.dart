@@ -56,41 +56,19 @@ class PilihAkunView extends GetView<PilihAkunController> {
                   ],
                 )),
             const SizedBox(height: 40),
-            Obx(
-              () => ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 56),
-                  backgroundColor: controller.selectedAccount.value == null
-                      ? Colors.white
-                      : Color(0xFF90BA3E),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                onPressed: controller.selectedAccount.value == null
-                    ? null
-                    : controller.continueToNext,
-                child: Text(
-                  'Selanjutnya',
-                  style: GoogleFonts.nunitoSans(
-                    textStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+            Obx(() => Row(
+                  children: [
+                    Button(
+                      text: 'Selanjutnya',
+                      sizeCategory: 'Large',
+                      isFilled: true,
+                      isActive: controller.selectedAccount.value != null,
+                      onTap: controller.selectedAccount.value == null
+                          ? null
+                          : controller.continueToNext,
                     ),
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Button(
-                  text: 'Login',
-                  sizeCategory: 'Large',
-                  isActive: false,
-                ),
-              ],
-            )
+                  ],
+                )),
           ],
         ),
       ),

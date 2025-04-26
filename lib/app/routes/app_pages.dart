@@ -1,3 +1,5 @@
+import 'package:agrivest/app/modules/investasi/bindings/investasi_binding.dart';
+import 'package:agrivest/app/modules/investasi/views/investasi_home_view.dart';
 import 'package:agrivest/app/modules/loginInvestor/bindings/login_investor_binding.dart';
 import 'package:agrivest/app/modules/loginInvestor/views/login_investor_view.dart';
 import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart';
@@ -12,7 +14,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.PILIHAKUN;
+  static const INITIAL = Routes.INVESTASI;
 
   static final routes = [
     GetPage(
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.LOGININVESTOR,
       page: () => LoginInvestorView(),
       binding: LoginInvestorBinding(),
+    ),
+    GetPage(
+      name: _Paths.INVESTASI,
+      page: () => InvestasiHomeView(),
+      binding: InvestasiBinding(),
     ),
   ];
 }
