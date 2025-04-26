@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "167405460403-fbigveeo1cord204c9t04tvhehsivh05.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.agrivest.agrivest",
+            "certificate_hash": "d2b77944e37fcf8508035d46725dc9fc94454d55"
+          }
+        },
+        {
           "client_id": "167405460403-mi8f7k12rfnog6ffjlg3t7hed5uvj092.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "167405460403-mi8f7k12rfnog6ffjlg3t7hed5uvj092.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "167405460403-5hhpkv9rciqlm632v9i675oaivad14e5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.agrivest.agrivest"
+              }
             }
           ]
         }

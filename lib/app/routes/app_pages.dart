@@ -1,8 +1,13 @@
+import 'package:agrivest/app/modules/RegisterInvestor/bindings/register_investor_binding.dart';
 import 'package:agrivest/app/modules/RegisterInvestor/views/register_investor_view.dart';
+import 'package:agrivest/app/modules/lainnyaHome/bindings/lainnya_home_binding.dart';
+import 'package:agrivest/app/modules/lainnyaHome/views/lainnya_home_view.dart';
 import 'package:agrivest/app/modules/loginInvestor/bindings/login_investor_binding.dart';
 import 'package:agrivest/app/modules/loginInvestor/views/login_investor_view.dart';
 import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart';
 import 'package:agrivest/app/modules/pilihAkun/views/pilih_akun_view.dart';
+import 'package:agrivest/app/modules/profile/bindings/profile_binding.dart';
+import 'package:agrivest/app/modules/profile/views/profile_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -18,7 +23,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -32,8 +37,18 @@ class AppPages {
       binding: LoginInvestorBinding(),
     ),
     GetPage(
-      name: _Paths.REGISTERINVESTOR,
-      page: () => RegisterInvestorView(),
+        name: _Paths.REGISTERINVESTOR,
+        page: () => RegisterInvestorView(),
+        binding: RegisterInvestorBinding()),
+    GetPage(
+      name: _Paths.PROFIL,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.LAINNYAHOME,
+      page: () => LainnyaHomeView(),
+      binding: LainnyaHomeBinding(),
     )
   ];
 }

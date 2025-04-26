@@ -1,8 +1,6 @@
-import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class LainnyaHomeController extends GetxController {
   var isObscured = true.obs;
   var selectedCategory = 'Semua'.obs;
 
@@ -49,58 +47,11 @@ class HomeController extends GetxController {
 
   List<Map<String, dynamic>> get filteredItems {
     if (selectedCategory.value == 'Semua') {
-      final categories = ['Sapi', 'Kambing', 'Domba'];
-      List<Map<String, dynamic>> result = [];
-
-      for (var category in categories) {
-        final item = allItems.firstWhere(
-          (element) => element['category'] == category,
-          orElse: () => {},
-        );
-        if (item.isNotEmpty) {
-          result.add(item);
-        }
-      }
-
-      return result;
+      return allItems;
     }
 
     return allItems
         .where((item) => item['category'] == selectedCategory.value)
         .toList();
-  }
-
-  final pageController = PageController();
-  var currentPage = 0.obs;
-  Timer? timer;
-
-  final bannerImages = [
-    'assets/images/banner1.png',
-    'assets/images/banner2.png',
-    'assets/images/banner3.png',
-  ];
-
-  @override
-  void onInit() {
-    super.onInit();
-    timer = Timer.periodic(Duration(seconds: 10), (Timer t) {
-      int nextPage = (currentPage.value + 1) % bannerImages.length;
-      pageController.animateToPage(
-        nextPage,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    });
-  }
-
-  void onPageChanged(int index) {
-    currentPage.value = index;
-  }
-
-  @override
-  void onClose() {
-    timer?.cancel();
-    pageController.dispose();
-    super.onClose();
   }
 }
