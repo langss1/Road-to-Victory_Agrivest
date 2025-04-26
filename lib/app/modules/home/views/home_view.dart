@@ -38,8 +38,10 @@ class HomeView extends GetView<HomeController> {
                       IconButton(
                         icon: Icon(Icons.notifications_none,
                             size: 28, color: Colors.grey),
-                        onPressed: () {},
-                      ),
+                        onPressed: () {
+                          Get.toNamed('/notifikasi');
+                        },
+                      )
                     ],
                   ),
                 ),

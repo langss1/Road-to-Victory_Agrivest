@@ -9,6 +9,8 @@ import 'package:agrivest/app/modules/investasi/views/investasi_home_view.dart';
 
 import 'package:agrivest/app/modules/loginInvestor/bindings/login_investor_binding.dart';
 import 'package:agrivest/app/modules/loginInvestor/views/login_investor_view.dart';
+import 'package:agrivest/app/modules/notifikasi/bindings/notifikasi_binding.dart';
+import 'package:agrivest/app/modules/notifikasi/views/notifikasi_view.dart';
 import 'package:agrivest/app/modules/pantauTernak/bindings/pantau_ternak_binding.dart';
 import 'package:agrivest/app/modules/pantauTernak/views/pantau_ternak_view.dart';
 import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart';
@@ -91,5 +93,10 @@ class AppPages {
       page: () => RiwayatView(),
       binding: RiwayatBinding(),
     ),
+    GetPage(
+      name: _Paths.NOTIFIKASI,
+      page: () => NotifikasiView(),
+      binding: NotifikasiBinding(),
+    )
   ];
 }
