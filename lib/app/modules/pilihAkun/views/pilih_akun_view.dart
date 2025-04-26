@@ -1,3 +1,4 @@
+import 'package:agrivest/app/common/widgets/button.dart';
 import 'package:agrivest/app/modules/pilihAkun/controllers/pilih_akun_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -81,6 +82,15 @@ class PilihAkunView extends GetView<PilihAkunController> {
                 ),
               ),
             ),
+            Row(
+              children: [
+                Button(
+                  text: 'Login',
+                  sizeCategory: 'Large',
+                  isActive: false,
+                ),
+              ],
+            )
           ],
         ),
       ),
