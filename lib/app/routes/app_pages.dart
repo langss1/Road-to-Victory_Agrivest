@@ -1,5 +1,6 @@
 import 'package:agrivest/app/modules/RegisterInvestor/bindings/register_investor_binding.dart';
 import 'package:agrivest/app/modules/RegisterInvestor/views/register_investor_view.dart';
+import 'package:agrivest/app/modules/investasi/views/investasi_detail.dart';
 import 'package:agrivest/app/modules/lainnyaHome/bindings/lainnya_home_binding.dart';
 import 'package:agrivest/app/modules/lainnyaHome/views/lainnya_home_view.dart';
 
@@ -63,6 +64,11 @@ class AppPages {
     GetPage(
       name: _Paths.INVESTASI,
       page: () => InvestasiHomeView(),
+      binding: InvestasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.INVESTASIDETAIL,
+      page: () => InvestasiDetailView(),
       binding: InvestasiBinding(),
     ),
     GetPage(
