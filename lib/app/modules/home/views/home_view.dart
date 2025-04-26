@@ -1,4 +1,5 @@
 import 'package:agrivest/app/common/customnavbar/custom_bottom_navbar.dart';
+import 'package:agrivest/app/common/widgets/list_ternak.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -224,41 +225,36 @@ class HomeView extends GetView<HomeController> {
                       }).toList(),
                     )),
                 const SizedBox(height: 16),
-                Obx(() => Column(
-                      children: controller.filteredItems.map((item) {
-                        final iconPath =
-                            controller.categoryIcons[item['category']] ??
-                                'assets/images/default.png';
-                        return Card(
-                          color: Colors.white,
-                          child: ListTile(
-                            leading: Image.asset(
-                              iconPath,
-                              width: 40,
-                              height: 40,
-                            ),
-                            title: Text(item['name']),
-                            subtitle: Text('Peternakan Sari Bumi'),
-                            trailing: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text('Rp${item['price']}/kg'),
-                                Text(
-                                  "${item['change']}%",
-                                  style: TextStyle(
-                                    color: item['change'] > 0
-                                        ? Colors.green
-                                        : (item['change'] < 0
-                                            ? Colors.red
-                                            : Colors.grey),
-                                  ),
-                                ),
-                              ],
-                            ),
+                Obx(() {
+                  if (controller.isLoading.value) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (controller.filteredItems.isEmpty) {
+                    return Center(
+                      child: Text('No items available'),
+                    );
+                  }
+                  return Column(
+                    children: controller.filteredItems.map((item) {
+                      return Column(
+                        children: [
+                          ListTernak(
+                            imgPath: 'assets/images/cow.png',
+                            namaTernak: item.namaHewan,
+                            namaPeternakan: item.namaPeternakan,
+                            hargaTernak: item.harga,
+                            satuan: '/ekor',
+                            change: item.change,
+                            onTap: () {},
                           ),
-                        );
-                      }).toList(),
-                    )),
+                          SizedBox(height: 12),
+                        ],
+                      );
+                    }).toList(),
+                  );
+                }),
               ],
             ),
           ),

@@ -1,6 +1,52 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+class SapiModel {
+  final String category;
+  final String categoryIcons;
+  final String namaHewan;
+  final int harga;
+  final bool isAvailable;
+  final int berat;
+  final String namaPeternakan;
+  final int slot;
+  final String keuntungan;
+  final double change;
+  final String umur;
+
+  SapiModel({
+    required this.category,
+    required this.categoryIcons,
+    required this.namaHewan,
+    required this.harga,
+    required this.isAvailable,
+    required this.berat,
+    required this.namaPeternakan,
+    required this.slot,
+    required this.keuntungan,
+    required this.change,
+    required this.umur,
+  });
+
+  factory SapiModel.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return SapiModel(
+      category: data['category'] ?? '',
+      categoryIcons: data['categoryIcons'] ?? '',
+      namaHewan: data['namaHewan'] ?? '',
+      harga: data['harga'] ?? 0,
+      isAvailable: data['isAvailable'] ?? false,
+      berat: data['berat'] ?? 0,
+      namaPeternakan: data['namaPeternakan'] ?? '',
+      slot: data['slot'] ?? '',
+      keuntungan: data['keuntungan'] ?? '',
+      change: data['change'] ?? 0.0,
+      umur: data['umur']?.toString() ?? '',
+    );
+  }
+}
 
 class HomeController extends GetxController {
   var isObscured = true.obs;
@@ -20,54 +66,17 @@ class HomeController extends GetxController {
     'Kambing': 'assets/images/kambing.png',
   };
 
-  List<Map<String, dynamic>> allItems = [
-    {'name': 'Sapi Limosin', 'price': 35000, 'change': -10, 'category': 'Sapi'},
-    {'name': 'Sapi Limosin', 'price': 55000, 'change': 20, 'category': 'Sapi'},
-    {'name': 'Sapi Limosin', 'price': 55000, 'change': 0, 'category': 'Sapi'},
-    {
-      'name': 'Kambing Etawa',
-      'price': 40000,
-      'change': 5,
-      'category': 'Kambing'
-    },
-    {
-      'name': 'Kambing Etawa',
-      'price': 41000,
-      'change': 3,
-      'category': 'Kambing'
-    },
-    {
-      'name': 'Kambing Etawa',
-      'price': 39000,
-      'change': -2,
-      'category': 'Kambing'
-    },
-    {'name': 'Domba Garut', 'price': 30000, 'change': 7, 'category': 'Domba'},
-    {'name': 'Domba Garut', 'price': 31000, 'change': 6, 'category': 'Domba'},
-    {'name': 'Domba Garut', 'price': 29500, 'change': -4, 'category': 'Domba'},
-  ];
+  var allItems = <SapiModel>[].obs;
+  var isLoading = true.obs;
 
-  List<Map<String, dynamic>> get filteredItems {
+  List<SapiModel> get filteredItems {
     if (selectedCategory.value == 'Semua') {
-      final categories = ['Sapi', 'Kambing', 'Domba'];
-      List<Map<String, dynamic>> result = [];
-
-      for (var category in categories) {
-        final item = allItems.firstWhere(
-          (element) => element['category'] == category,
-          orElse: () => {},
-        );
-        if (item.isNotEmpty) {
-          result.add(item);
-        }
-      }
-
-      return result;
+      return allItems.toList();
+    } else {
+      return allItems
+          .where((item) => item.category == selectedCategory.value)
+          .toList();
     }
-
-    return allItems
-        .where((item) => item['category'] == selectedCategory.value)
-        .toList();
   }
 
   final pageController = PageController();
@@ -83,6 +92,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    fetchItems();
     timer = Timer.periodic(Duration(seconds: 10), (Timer t) {
       int nextPage = (currentPage.value + 1) % bannerImages.length;
       pageController.animateToPage(
@@ -91,6 +101,18 @@ class HomeController extends GetxController {
         curve: Curves.easeInOut,
       );
     });
+  }
+
+  void fetchItems() async {
+    if (allItems.isNotEmpty) return;
+    isLoading.value = true;
+    FirebaseFirestore.instance.collection('HewanTernak').snapshots().listen(
+      (snapshot) {
+        allItems.value =
+            snapshot.docs.map((doc) => SapiModel.fromFirestore(doc)).toList();
+        isLoading.value = false;
+      },
+    );
   }
 
   void onPageChanged(int index) {
