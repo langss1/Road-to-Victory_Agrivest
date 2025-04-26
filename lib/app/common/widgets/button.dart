@@ -30,25 +30,28 @@ class Button extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
                 width: isActive && isFilled ? 2 : 1,
-                color: isActive && isFilled ? Colors.green : Colors.grey),
+                color: isActive && isFilled
+                    ? Color(0xFF90BA3E)
+                    : Color(0xFFBBBBBB)),
             color: isActive && isFilled
-                ? Colors.green
+                ? Color(0xFF90BA3E)
                 : isActive
                     ? null
-                    : Colors.grey),
+                    : Color(0xFFBBBBBB)),
         child: Center(
           child: Text(
             text,
             style: GoogleFonts.nunito(
-                color: isActive && isFilled
-                    ? Colors.white
-                    : isActive
-                        ? Colors.grey
-                        : Colors.white,
-                fontWeight: sizeCategory == 'Large' || isFilled
-                    ? FontWeight.bold
-                    : FontWeight.normal,
-                fontSize: 14),
+              color: isActive && isFilled
+                  ? Colors.white
+                  : isActive
+                      ? Colors.grey
+                      : Colors.white,
+              fontWeight: sizeCategory == 'Large' || isFilled
+                  ? FontWeight.bold
+                  : FontWeight.normal,
+              fontSize: 16,
+            ),
           ),
         ),
       ),

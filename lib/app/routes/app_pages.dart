@@ -2,6 +2,10 @@ import 'package:agrivest/app/modules/RegisterInvestor/bindings/register_investor
 import 'package:agrivest/app/modules/RegisterInvestor/views/register_investor_view.dart';
 import 'package:agrivest/app/modules/lainnyaHome/bindings/lainnya_home_binding.dart';
 import 'package:agrivest/app/modules/lainnyaHome/views/lainnya_home_view.dart';
+
+import 'package:agrivest/app/modules/investasi/bindings/investasi_binding.dart';
+import 'package:agrivest/app/modules/investasi/views/investasi_home_view.dart';
+
 import 'package:agrivest/app/modules/loginInvestor/bindings/login_investor_binding.dart';
 import 'package:agrivest/app/modules/loginInvestor/views/login_investor_view.dart';
 import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart';
@@ -49,6 +53,16 @@ class AppPages {
       name: _Paths.LAINNYAHOME,
       page: () => LainnyaHomeView(),
       binding: LainnyaHomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.INVESTASI,
+      page: () => InvestasiHomeView(),
+      binding: InvestasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTERINVESTOR,
+      page: () => RegisterInvestorView(),
+      binding: RegisterInvestorBinding(),
     )
   ];
 }
