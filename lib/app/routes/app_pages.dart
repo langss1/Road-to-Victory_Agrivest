@@ -6,6 +6,8 @@ import 'package:agrivest/app/modules/pilihAkun/bindings/pilih_akun_binding.dart'
 import 'package:agrivest/app/modules/pilihAkun/views/pilih_akun_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/RegisterInvestor/bindings/register_investor_binding.dart';
+import '../modules/RegisterInvestor/views/register_investor_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 
@@ -37,5 +39,10 @@ class AppPages {
       page: () => InvestasiHomeView(),
       binding: InvestasiBinding(),
     ),
+    GetPage(
+      name: _Paths.REGISTERINVESTOR,
+      page: () => RegisterInvestorView(),
+      binding: RegisterInvestorBinding(),
+    )
   ];
 }
