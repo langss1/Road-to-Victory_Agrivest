@@ -1,8 +1,8 @@
 import 'package:agrivest/app/modules/notifikasi/controllers/notifikasi_controller.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class NotifikasiView extends StatelessWidget {
   final NotifikasiController controller = Get.put(NotifikasiController());
@@ -21,28 +21,38 @@ class NotifikasiView extends StatelessWidget {
         foregroundColor: Colors.black,
       ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _sectionTitle('Hari Ini'),
-              const SizedBox(height: 10),
-              Obx(() => Column(
-                    children: controller.todayNotifications
-                        .map((notif) => _notificationCard(notif))
-                        .toList(),
-                  )),
-              const SizedBox(height: 20),
-              _sectionTitle('Kemarin'),
-              const SizedBox(height: 10),
-              Obx(() => Column(
-                    children: controller.yesterdayNotifications
-                        .map((notif) => _notificationCard(notif))
-                        .toList(),
-                  )),
-            ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          controller.fetchNotifications();
+        },
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _sectionTitle('Hari Ini'),
+                const SizedBox(height: 10),
+                Obx(() => controller.todayNotifications.isEmpty
+                    ? _emptyText()
+                    : Column(
+                        children: controller.todayNotifications
+                            .map((notif) => _notificationCard(notif))
+                            .toList(),
+                      )),
+                const SizedBox(height: 20),
+                _sectionTitle('Kemarin'),
+                const SizedBox(height: 10),
+                Obx(() => controller.yesterdayNotifications.isEmpty
+                    ? _emptyText()
+                    : Column(
+                        children: controller.yesterdayNotifications
+                            .map((notif) => _notificationCard(notif))
+                            .toList(),
+                      )),
+              ],
+            ),
           ),
         ),
       ),
@@ -99,7 +109,7 @@ class NotifikasiView extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  notif.dateTime,
+                  DateFormat('dd MMMM yyyy, HH:mm').format(notif.dateTime),
                   style: GoogleFonts.nunito(
                     color: Colors.grey,
                     fontSize: 11,
@@ -109,6 +119,15 @@ class NotifikasiView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _emptyText() {
+    return Center(
+      child: Text(
+        'Belum ada notifikasi.',
+        style: GoogleFonts.nunito(color: Colors.grey),
       ),
     );
   }
